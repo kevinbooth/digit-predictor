@@ -62,14 +62,14 @@ module.exports = function (grunt) {
             },
             compile: {
                 files: {
-                    'static/scripts/common.min.js': ['static/scripts/js/scripts.js']
+                    'static/scripts/common.min.js': ['static/scripts/js/app.js']
                 }
             }
         },
         watch: {
             css: {
-                files: ['static/styles/*.scss', 'static/styles/*.scss'],
-                tasks: ['sass']//'imagemin', 'cacheBust:css']
+                files: ['static/styles/scss/*.scss', 'static/styles/scss/**/*.scss'],
+                tasks: ['sass']
             },
             scripts: {
                 files: ['<%= jshint.files %>'],
