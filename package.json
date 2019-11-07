@@ -1,0 +1,28 @@
+{
+  "name": "digit-recognition",
+  "version": "1.0.0",
+  "description": "Digit Recognition Web Application",
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinbooth/digit-recognition.git"
+  },
+  "author": "Kevin Booth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinbooth/digit-recognition/issues"
+  },
+  "homepage": "https://github.com/kevinbooth/digit-recognition#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cache-bust": "^1.4.1",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
