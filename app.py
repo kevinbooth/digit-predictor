@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
+import numpy as np
+
+import sys 
+import os
 
 app = Flask(__name__)
-global model, graph
-model, graph = init()
     
 @app.route('/')
 def index():
@@ -14,5 +16,5 @@ def predict():
 
 if __name__ == '__main__':
     app.debug = True
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5500))
     app.run(host='0.0.0.0', port=port)
