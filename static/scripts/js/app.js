@@ -83,7 +83,7 @@ DR.initDrawing = function () {
 };
 
 /**
- * Fires off all functions on page load
+ * Draws a line where cursor moves to within canvas
  * @function
  */
 DR.draw = function () {
