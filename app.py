@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from skimage import transform,io
-from PIL import Image
 import numpy as np
 import re
 import base64

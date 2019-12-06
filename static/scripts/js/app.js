@@ -63,9 +63,9 @@ DR.initDrawing = function () {
         x: 0, 
         y: 0
     };
-    DR.context.fillStyle = "white";
+    DR.context.fillStyle = "#232323";
 	DR.context.fillRect(0, 0, DR.canvas.width, DR.canvas.height);
-	DR.context.color = "black";
+	DR.context.color = "white";
 	DR.context.lineWidth = 20;
     DR.context.lineJoin = DR.context.lineCap = 'round';
 
