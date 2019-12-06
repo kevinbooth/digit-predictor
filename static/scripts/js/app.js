@@ -37,6 +37,12 @@ DR.ready = function (_fn) {
  */
 DR.init = function () {
     DR.initDrawing();
+
+    const btnPredict = document.querySelector("#predict");
+
+    btnPredict.addEventListener('click', function() {
+        DR.predict();
+    });
 };
 
 /**
@@ -57,9 +63,9 @@ DR.initDrawing = function () {
         x: 0, 
         y: 0
     };
-    DR.context.fillStyle = "#232323";
+    DR.context.fillStyle = "white";
 	DR.context.fillRect(0, 0, DR.canvas.width, DR.canvas.height);
-	DR.context.color = "white";
+	DR.context.color = "black";
 	DR.context.lineWidth = 20;
     DR.context.lineJoin = DR.context.lineCap = 'round';
 
@@ -77,9 +83,7 @@ DR.initDrawing = function () {
 
 	DR.canvas.addEventListener("mouseup", function() {
 		DR.canvas.removeEventListener("mousemove", DR.draw, false);
-	}, false);    
-
-
+	}, false);
 };
 
 /**
@@ -97,6 +101,27 @@ DR.draw = function () {
     DR.context.lineTo(DR.mouse.x, DR.mouse.y );
     DR.context.closePath();
     DR.context.stroke();
+};
+
+/**
+ * Sends asynchronous call back to server to predict what digit was drawn
+ * @function
+ */
+DR.predict = function () {
+    const digit = DR.canvas.toDataURL('image/png');
+
+    const response = fetch('/api/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(digit) // body data type must match "Content-Type" header
+    }).then(function (value) {
+        console.log(value);
+    }).catch(function (reason) {
+        // Handle error
+    });
 };
 
 /**

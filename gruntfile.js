@@ -42,7 +42,8 @@ module.exports = function (grunt) {
         },
         jshint: {
             options: {
-                strict: false
+                strict: false,
+                'esversion': 6
             },
             files: ['static/scripts/js/*.js']
         },

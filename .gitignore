@@ -1,3 +1,6 @@
 node_modules/
 package-lock.json
 .sass-cache/
+__pycache__
+digit.png
+digit_sm.png
