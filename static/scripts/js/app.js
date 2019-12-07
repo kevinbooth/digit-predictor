@@ -39,9 +39,14 @@ DR.init = function () {
     DR.initDrawing();
 
     const btnPredict = document.querySelector("#predict");
+    const btnClear = document.querySelector("#clear");
 
     btnPredict.addEventListener('click', function() {
         DR.predict();
+    });
+
+    btnClear.addEventListener('click', function() {
+        DR.clear();
     });
 };
 
@@ -83,7 +88,7 @@ DR.initDrawing = function () {
 
 	DR.canvas.addEventListener("mouseup", function() {
 		DR.canvas.removeEventListener("mousemove", DR.draw, false);
-	}, false);
+    }, false);
 };
 
 /**
@@ -101,6 +106,16 @@ DR.draw = function () {
     DR.context.lineTo(DR.mouse.x, DR.mouse.y );
     DR.context.closePath();
     DR.context.stroke();
+};
+
+/**
+ * Clears the canvas
+ * @function
+ */
+DR.clear = function () {
+    DR.context.clearRect( 0, 0, 280, 280 );
+    DR.context.fillStyle="black";
+    DR.context.fillRect(0,0,canvas.width,canvas.height);
 };
 
 /**
