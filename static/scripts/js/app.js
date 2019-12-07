@@ -15,7 +15,8 @@ var DR = window.DR || {
     canvas: '',
     context: '',
     mouse: '',
-    prevMouse: ''
+    prevMouse: '',
+    prediction: ''
 };
 
 /**
@@ -71,7 +72,7 @@ DR.initDrawing = function () {
     DR.context.fillStyle = "black";
 	DR.context.fillRect(0, 0, DR.canvas.width, DR.canvas.height);
 	DR.context.color = "white";
-	DR.context.lineWidth = 30;
+	DR.context.lineWidth = 10;
     DR.context.lineJoin = DR.context.lineCap = 'round';
 
 	DR.canvas.addEventListener("mousemove", function(e) {
@@ -113,6 +114,9 @@ DR.draw = function () {
  * @function
  */
 DR.clear = function () {
+    const result = document.querySelector("#result");
+    result.innerHTML = '';
+
     DR.context.clearRect( 0, 0, 280, 280 );
     DR.context.fillStyle="black";
     DR.context.fillRect(0,0,canvas.width,canvas.height);
@@ -124,18 +128,21 @@ DR.clear = function () {
  */
 DR.predict = function () {
     const digit = DR.canvas.toDataURL('image/jpg');
+    const result = document.querySelector("#result");
 
-    const response = fetch('/api/predict', {
+    fetch('http://127.0.0.1:5500/api/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(digit) // body data type must match "Content-Type" header
-    }).then(function (value) {
-        console.log(value);
+        body: JSON.stringify(digit)
+    }).then(function (response) {
+        response.json().then(function (data) {
+            DR.prediction = data.prediction;
+            result.innerHTML = "Result: " + DR.prediction;
+        });
     }).catch(function (reason) {
-        // Handle error
+        result.innerHTML = "Something went wrong.";
     });
 };
 

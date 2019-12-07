@@ -1,5 +1,5 @@
 # Web app imports
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, Response, render_template, request, jsonify
 import sys 
 import os
 
@@ -39,7 +39,7 @@ def predict():
     img_size = 28, 28 
 
     image = Image.open('digit.jpg') 
-    image = image.resize(img_size, Image.NEAREST)
+    image = image.resize(img_size, Image.LANCZOS)
     image = image.convert('1') 
     image_array = np.asarray(image)
     image_array = image_array.flatten().reshape(1, -1)
@@ -47,9 +47,9 @@ def predict():
     model = joblib.load('model/model.joblib')
     #model = pickle.load(open('model/model.pkl', 'rb'))
     prediction = model.predict(image_array)
-    print("Prediction:", prediction)
+    print("Prediction:", prediction[0])
 
-    return jsonify({'prediction': 5})
+    return jsonify({'prediction': int(prediction[0])})
 
 def parse_digit(digit_img):
     # parse canvas bytes and save as digit.png
