@@ -130,7 +130,7 @@ DR.predict = function () {
     const digit = DR.canvas.toDataURL('image/jpg');
     const result = document.querySelector("#result");
 
-    fetch('http://127.0.0.1:5500/api/predict', {
+    fetch('/api/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
