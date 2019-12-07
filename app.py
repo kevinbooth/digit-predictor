@@ -1,15 +1,19 @@
+# Web app imports
 from flask import Flask, render_template, request, jsonify
+import sys 
+import os
+
+# Image processing imports
 from skimage import transform,io
 import numpy as np
 import re
 import base64
-import pickle
-import joblib
-from sklearn.neural_network import MLPClassifier
 from PIL import Image
 
-import sys 
-import os
+# Model imports
+from sklearn.neural_network import MLPClassifier
+import pickle
+import joblib
 
 app = Flask(__name__)
     
@@ -30,7 +34,7 @@ def predict():
     #io.imsave('digit_final.jpg', x)
 
     #requests image from url 
-    parseDigit(request.get_data())
+    parse_digit(request.get_data())
 
     img_size = 28, 28 
 
@@ -47,11 +51,11 @@ def predict():
 
     return jsonify({'prediction': 5})
 
-def parseDigit(digitImg):
+def parse_digit(digit_img):
     # parse canvas bytes and save as digit.png
-    imgstr = re.search(b'base64,(.*)', digitImg).group(1)
+    img_str = re.search(b'base64,(.*)', digit_img).group(1)
     with open('digit.jpg','wb') as digit:
-        digit.write(base64.decodebytes(imgstr))
+        digit.write(base64.decodebytes(img_str))
 
 if __name__ == '__main__':
     app.debug = True
