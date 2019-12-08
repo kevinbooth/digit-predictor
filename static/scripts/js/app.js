@@ -114,7 +114,9 @@ DR.initDrawing = function () {
  * Draws a line where cursor moves to within canvas
  * @function
  */
-DR.draw = function () {
+DR.draw = function (e) {
+    e.preventDefault();
+
     DR.context.lineWidth = DR.context.lineWidth;
     DR.context.lineJoin = "round";
     DR.context.lineCap = "round";
