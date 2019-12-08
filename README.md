@@ -25,9 +25,10 @@ python app.py
 
 ### Web App:
 * Flask
-* Grunt.js Frontend Build Processing
 * Vanilla JS
-* SCSS
+  * Fetch API
+* Sass
+* Grunt.js Frontend Build Processing
 
 ### ML Model:
 * Multi-layer Perceptron Neural Network 
