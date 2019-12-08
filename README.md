@@ -1,4 +1,5 @@
 # Digit Recognition Web Application Tool
+Handwritten digit recognition web application that utilizes the MNIST dataset
 
 ## Local development steps
 
@@ -19,3 +20,19 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
+
+## Technology
+
+### Web App:
+* Flask
+* Grunt.js Frontend Build Processing
+* Vanilla JS
+* SCSS
+
+### ML Model:
+* Multi-layer Perceptron Neural Network 
+  * scikit-learn
+* Joblib/Pickle Serialization
+
+### Dataset:
+* MNIST
