@@ -4,6 +4,7 @@ canvas, .canvas {
     border: 5px solid white;
     box-shadow: 10px 10px 0 white;
     margin-bottom: 2rem;
+    touch-action: none;
 
     &:hover {
         cursor: pointer;
