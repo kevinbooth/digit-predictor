@@ -75,6 +75,7 @@ DR.initDrawing = function () {
 	DR.context.lineWidth = 10;
     DR.context.lineJoin = DR.context.lineCap = 'round';
 
+    /* Desktop draw */
 	DR.canvas.addEventListener("mousemove", function(e) {
 		DR.prevMouse.x = DR.mouse.x;
 		DR.prevMouse.y = DR.mouse.y;
@@ -90,6 +91,23 @@ DR.initDrawing = function () {
 	DR.canvas.addEventListener("mouseup", function() {
 		DR.canvas.removeEventListener("mousemove", DR.draw, false);
     }, false);
+
+    /* Mobile draw */
+    DR.canvas.addEventListener("touchmove", function(e) {
+		DR.prevMouse.x = DR.mouse.x;
+		DR.prevMouse.y = DR.mouse.y;
+
+		DR.mouse.x = e.pageX - this.offsetLeft;
+		DR.mouse.y = e.pageY - this.offsetTop;
+	}, {passive: true});
+
+	DR.canvas.addEventListener("touchstart", function(e) {
+		DR.canvas.addEventListener("touchmove", DR.draw, {passive: true});
+	}, {passive: true});
+
+	DR.canvas.addEventListener("touchend", function() {
+		DR.canvas.removeEventListener("touchmove", DR.draw, {passive: true});
+    }, {passive: true});
 };
 
 /**
