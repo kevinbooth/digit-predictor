@@ -84,7 +84,7 @@ DR.initDrawing = function () {
 		DR.mouse.y = e.pageY - this.offsetTop;
 	}, false);
 
-	DR.canvas.addEventListener("mousedown", function(e) {
+	DR.canvas.addEventListener("mousedown", function() {
 		DR.canvas.addEventListener("mousemove", DR.draw, false);
 	}, false);
 
@@ -101,7 +101,7 @@ DR.initDrawing = function () {
 		DR.mouse.y = e.pageY - this.offsetTop;
 	}, {passive: true});
 
-	DR.canvas.addEventListener("touchstart", function(e) {
+	DR.canvas.addEventListener("touchstart", function() {
 		DR.canvas.addEventListener("touchmove", DR.draw, {passive: true});
 	}, {passive: true});
 
@@ -114,9 +114,7 @@ DR.initDrawing = function () {
  * Draws a line where cursor moves to within canvas
  * @function
  */
-DR.draw = function (e) {
-    e.preventDefault();
-
+DR.draw = function () {
     DR.context.lineWidth = DR.context.lineWidth;
     DR.context.lineJoin = "round";
     DR.context.lineCap = "round";
