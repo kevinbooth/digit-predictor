@@ -23,16 +23,9 @@ def index():
 
 @app.route('/api/predict', methods=['GET','POST'])
 def predict():
-    # read parsed image back in 8-bit, black and white mode (L)
-    #x = io.imread('digit.jpg', as_gray=True)
-    #x = np.invert(x)
-    #x = transform.resize(x, (28, 28))
-    #io.imsave('digit_sm.jpg', x)
-    #reshape image data for use in neural network
-    #x = x.reshape(1, 784).astype('float32')
-    # x /= 255
-    #io.imsave('digit_final.jpg', x)
-
+    """
+    Predicts what digit was written
+    """
     #requests image from url 
     parse_digit(request.get_data())
 
@@ -52,7 +45,7 @@ def predict():
     return jsonify({'prediction': int(prediction[0])})
 
 def parse_digit(digit_img):
-    # parse canvas bytes and save as digit.png
+    # parse canvas bytes and save as digit.jpg
     img_str = re.search(b'base64,(.*)', digit_img).group(1)
     with open('digit.jpg','wb') as digit:
         digit.write(base64.decodebytes(img_str))
