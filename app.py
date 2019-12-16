@@ -26,7 +26,6 @@ def predict():
     """
     Predicts what digit was written
     """
-    #requests image from url 
     parse_digit(request.get_data())
 
     img_size = 28, 28 
@@ -45,7 +44,9 @@ def predict():
     return jsonify({'prediction': int(prediction[0])})
 
 def parse_digit(digit_img):
-    # parse canvas bytes and save as digit.jpg
+    """
+    Parse canvas bytes and save as digit.jpg
+    """
     img_str = re.search(b'base64,(.*)', digit_img).group(1)
     with open('digit.jpg','wb') as digit:
         digit.write(base64.decodebytes(img_str))
